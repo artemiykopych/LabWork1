@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -36,7 +37,15 @@ namespace Lab1
                 X = Convert.ToInt32(x.Text);
                 Y = Convert.ToInt32(y.Text);
 
-                sph = new Semisphere(R, A);
+                if (A == 0) {
+                    sph = new Semisphere(R);
+                }
+                else if ((R == 0) && (A == 0)) {
+                    sph = new Semisphere();
+                }
+                else {
+                    sph = new Semisphere(R, A);
+                }             
 
                 area.Content = Math.Round(sph.CalculateArea(), 2);
                 arc.Content = Math.Round(sph.CalculateArcLength(), 2);

@@ -8,7 +8,7 @@ using System.Windows.Shapes;
 namespace Lab1
 {
     internal class Semisphere {
-        private int radius, angle;
+        public int radius, angle;
 
         public Semisphere(int radius, int angle) {
             if (radius <= 0) {
@@ -17,6 +17,24 @@ namespace Lab1
 
             this.radius = radius;
             this.angle = angle;
+        }
+
+        public Semisphere(int radius) {
+            Random ran = new Random();
+
+            if (radius <= 0) {
+                throw new ArgumentException("Радіус повинен бути додатнім числом.");
+            }
+
+            this.radius = radius;
+            this.angle = ran.Next(0, 181);
+        }
+
+        public Semisphere() {
+            Random ran = new Random();
+
+            this.radius = ran.Next(1, 11);
+            this.angle = ran.Next(0, 181);
         }
 
         public double CalculateArea() {
@@ -45,6 +63,14 @@ namespace Lab1
                 answer = "ні";
                 return answer;
             }
+        }
+
+        public int R {
+            get { return radius; }
+        }
+
+        public int A {
+            get { return angle; }
         }
     }
 }
